@@ -374,7 +374,7 @@ export default function App() {
   };
 
   const fetchHistory = () => {
-    axios.get("http://localhost:8000/history")
+    axios.get("https://bulk-mail-app-6pof.onrender.com/history")
       .then(res => setHistory(res.data))
       .catch(console.error);
   };
@@ -385,7 +385,7 @@ export default function App() {
       return;
     }
     setSending(true);
-    axios.post("http://localhost:8000/SendMail", { subject, msg, emailList })
+    axios.post("https://bulk-mail-app-6pof.onrender.com/SendMail", { subject, msg, emailList })
       .then(res => {
         alert(`Sent: ${res.data.sent}, Failed: ${res.data.failed.length}`);
         setSubject("");
@@ -399,7 +399,7 @@ export default function App() {
   // 🔴 NEW: delete a history record
   const deleteRecord = (id) => {
     if (!window.confirm("Delete this record?")) return;
-    axios.delete(`http://localhost:8000/history/${id}`)
+    axios.delete(`https://bulk-mail-app-6pof.onrender.com/history/${id}`)
       .then(() => setHistory(history.filter(h => h._id !== id)))
       .catch(() => alert("Failed to delete record"));
   };
